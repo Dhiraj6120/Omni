@@ -19,6 +19,11 @@ class LoginPage {
       // cy.get('#oktaVerifyPush_0-label').click();
     });
   }
+
+  verifyLoginPage() {
+    cy.url().should('include', '/#/');
+    cy.get('#omni_dashboard_login_btn', { timeout: 10000 }).should('be.visible');
+  }
 }
 
 module.exports = LoginPage;
