@@ -1,7 +1,7 @@
 const { Given, When, Then, And } = require("cypress-cucumber-preprocessor/steps");
 const LoginPage = require('../pages/LoginPage');
 const OmniHomePage = require('../pages/OmniHomePage');
-const { overrideWindowOpen } = require('../utils');
+const { overrideWindowOpen } = require('../utils/GenericUtils');
 const loginPage = new LoginPage();
 const omniHomePage = new OmniHomePage();
 
@@ -39,5 +39,5 @@ And('I tap on the cancel button', () => {
 });
 
 Then('I should remain on the Omningage Dashboard', () => {
-  omniHomePage.verifyOmningageDashboard();
+  omniHomePage.verifyOmniTextOnDashboard();
 });

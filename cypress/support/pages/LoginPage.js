@@ -1,3 +1,5 @@
+const { overrideWindowOpen } = require('../utils/GenericUtils');
+
 class LoginPage {
   visit() {
     cy.visit('/#/');

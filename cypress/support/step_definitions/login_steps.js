@@ -1,7 +1,7 @@
 const { Given, When, Then, And } = require("cypress-cucumber-preprocessor/steps");
 const LoginPage = require('../pages/LoginPage');
 const OmniHomePage = require('../pages/OmniHomePage');
-const { overrideWindowOpen } = require('../utils');
+const { overrideWindowOpen } = require('../utils/GenericUtils');
 const loginPage = new LoginPage();
 const omnihomepage = new OmniHomePage()
 

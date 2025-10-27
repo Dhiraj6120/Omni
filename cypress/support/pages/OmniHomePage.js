@@ -1,31 +1,30 @@
-const { overrideWindowOpen } = require('../utils');
-
+const { overrideWindowOpen } = require('../utils/GenericUtils');
+const { waitFor, getWithTimeout, getTextAndAssert } = require('../utils/waitUtils');
 
 class OmniHomePage {
-
   clickLogoutButton() {
-    cy.get('#omni_logout_button', { timeout: 10000 }).click();
+    getWithTimeout('#omni_logout_button').click();
   }
 
   confirmLogout() {
-    cy.get('#omni_logout_agent_logout_btn', { timeout: 10000 }).click();
+    getWithTimeout('#omni_logout_agent_logout_btn').click();
   }
 
   cancelLogout() {
-    cy.get('#omni_logout_agent_logout_btn', { timeout: 10000 }).contains('Cancel').click();
+    getWithTimeout('#omni_logout_agent_canncel_btn').click();
   }
 
   verifyOmningageDashboard() {
-    cy.wait(10000);
+    waitFor(); // default 10s
     cy.visit('/#/home/supervisor');
-    overrideWindowOpen()
-    cy.get('#omni_dashboard_login_btn', { timeout: 10000 }).click();
+    overrideWindowOpen();
+    getWithTimeout('#omni_dashboard_login_btn').click();
     cy.document().should('exist');
-    cy.get('.custom-space', { timeout: 30000 })
-      .invoke('text')
-      .then(text => {
-        expect(text.toLowerCase()).to.include('omni');
-      });
+    getTextAndAssert('.custom-space', 'omni');
+  }
+
+  verifyOmniTextOnDashboard() {
+    getTextAndAssert('.custom-space', 'omni');
   }
 }
 
