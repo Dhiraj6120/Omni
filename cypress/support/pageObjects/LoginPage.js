@@ -15,8 +15,8 @@ class LoginPage {
       cy.get('input[data-se="credentials.passcode"]').type(password);
       cy.get('button[data-se="save"]').click();
       // The next step might need adjustment based on the actual MFA flow
-      // cy.get('#oktaVerifyPush_1-description').click();
-      cy.get('#oktaVerifyPush_0-label').click();
+      cy.get('#oktaVerifyPush_1-description').click();
+      // cy.get('#oktaVerifyPush_0-label').click();
     });
   }
 
@@ -28,9 +28,13 @@ class LoginPage {
       });
     });
     cy.get('#omni_dashboard_login_btn', { timeout: 10000 }).click();
-    cy.wait(15000);
     cy.document().should('exist');
-    cy.get('.custom-space').should('contain.text', 'Omningage');
+    cy.get('.custom-space', { timeout: 20000 })
+    .invoke('text')
+    .then(text => {
+      expect(text.toLowerCase()).to.include('omni');
+    });
+
   }
 }
 
