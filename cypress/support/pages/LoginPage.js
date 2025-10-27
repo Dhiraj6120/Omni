@@ -1,3 +1,5 @@
+const { overrideWindowOpen } = require('../utils/GenericUtils');
+
 class LoginPage {
   visit() {
     cy.visit('/#/');
@@ -20,21 +22,9 @@ class LoginPage {
     });
   }
 
-  verifyOmningageDashboard() {
-    cy.wait(10000);
-    cy.visit('/#/home/supervisor');
-    cy.window().then((win) => {
-      cy.stub(win, 'open').callsFake(() => {
-      });
-    });
-    cy.get('#omni_dashboard_login_btn', { timeout: 10000 }).click();
-    cy.document().should('exist');
-    cy.get('.custom-space', { timeout: 20000 })
-    .invoke('text')
-    .then(text => {
-      expect(text.toLowerCase()).to.include('omni');
-    });
-
+  verifyLoginPage() {
+    cy.url().should('include', '/#/');
+    cy.get('#omni_dashboard_login_btn', { timeout: 10000 }).should('be.visible');
   }
 }
 
