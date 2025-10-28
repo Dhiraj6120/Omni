@@ -1,4 +1,5 @@
 const { overrideWindowOpen } = require('../utils/GenericUtils');
+const { waitFor, getWithTimeout, getTextAndAssert } = require('../utils/waitUtils');
 
 class LoginPage {
   visit() {
@@ -6,7 +7,7 @@ class LoginPage {
   }
 
   clickLoginButton() {
-    cy.get('#omni_dashboard_login_btn', { timeout: 10000 }).click();
+    getWithTimeout('#omni_dashboard_login_btn').click()
   }
 
   loginOkta(username, password) {
@@ -16,15 +17,13 @@ class LoginPage {
       cy.get('button[data-se="save"]').click();
       cy.get('input[data-se="credentials.passcode"]').type(password);
       cy.get('button[data-se="save"]').click();
-      // The next step might need adjustment based on the actual MFA flow
       cy.get('#oktaVerifyPush_1-description').click();
-      // cy.get('#oktaVerifyPush_0-label').click();
     });
   }
 
   verifyLoginPage() {
     cy.url().should('include', '/#/');
-    cy.get('#omni_dashboard_login_btn', { timeout: 10000 }).should('be.visible');
+    getWithTimeout('#omni_dashboard_login_btn').should('be.visible');
   }
 }
 
