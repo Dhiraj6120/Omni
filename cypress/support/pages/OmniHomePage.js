@@ -1,5 +1,6 @@
 const { overrideWindowOpen } = require('../utils/GenericUtils');
 const { waitFor, getWithTimeout, getTextAndAssert } = require('../utils/waitUtils');
+const { Omni_Home_URL } = require('../constants/urls');
 
 class OmniHomePage {
   clickLogoutButton() {
@@ -16,7 +17,7 @@ class OmniHomePage {
 
   verifyOmningageDashboard() {
     waitFor();
-    cy.visit('/#/home/agent');
+    cy.visit(Omni_Home_URL);
     overrideWindowOpen();
     getWithTimeout('#omni_dashboard_login_btn').click();
     cy.document().should('exist');
