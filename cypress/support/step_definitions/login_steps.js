@@ -18,6 +18,6 @@ When(/^I log in to Okta with username "([^"]*)" and password "([^"]*)"$/, (usern
   loginPage.loginOkta(username, password);
 });
 
-Then(/^I should be logged in and see Omningage on the dashboard$/, () => {
+Then('I should be logged in and see Omningage on the dashboard', () => {
   omnihomepage.verifyOmningageDashboard();
 });

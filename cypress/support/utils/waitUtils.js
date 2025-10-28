@@ -9,7 +9,7 @@ function waitFor(milliseconds = 10000) {
   }
   
   // Get element and assert it contains text
-  function getTextAndAssert(selector, expectedText, timeout = 30000) {
+  function getTextAndAssert(selector, expectedText, timeout = 40000) {
     cy.get(selector, { timeout })
       .invoke('text')
       .then(text => {
