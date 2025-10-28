@@ -7,4 +7,5 @@ Feature: Login to Omningage Dashboard
     Given I open the Omningage application
     And I click on the login button
     When I log in to Okta with username "dhiraj.gawali@oktapreview.virginmediao2.co.uk" and password "Dhiali976736$"
+    # When I log in to Okta with username "TestAccount01RetainX@oktapreview.virginmediao2.co.uk" and password "Caboodle_963!"
     Then I should be logged in and see Omningage on the dashboard

@@ -15,12 +15,12 @@ class OmniHomePage {
   }
 
   verifyOmningageDashboard() {
-    waitFor(); // default 10s
-    cy.visit('/#/home/supervisor');
+    waitFor();
+    cy.visit('/#/home/agent');
     overrideWindowOpen();
     getWithTimeout('#omni_dashboard_login_btn').click();
     cy.document().should('exist');
-    getTextAndAssert('.custom-space', 'omni');
+    this.verifyOmniTextOnDashboard();
   }
 
   verifyOmniTextOnDashboard() {
